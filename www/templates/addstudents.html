@@ -1,0 +1,37 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Add Student</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeStudentWindow()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form name="myForm" ng-submit="addStudentDetail()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Student Name</span>
+          <input type="text" ng-model="studentData.studentName">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Roll No</span>
+          <input type="text" ng-model="studentData.rollNo">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Department</span>
+          <input type="text" ng-model="studentData.standard">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Section</span>
+          <input type="text" ng-model="studentData.section">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Parent Number</span>
+          <input type="text" ng-model="studentData.parentNo">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Log in</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

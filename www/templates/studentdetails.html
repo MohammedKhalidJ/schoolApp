@@ -1,0 +1,15 @@
+<ion-view view-title="Student Details">
+  <ion-content>
+    <button class="button button-positive" ng-click=openStudentWindow()>Add</button>  
+    <div class="row header">
+          <div class="col">Roll Number</div>
+          <div class="col">Student Name</div>
+          <div class="col">standard</div>
+        </div>
+        <div class="row" ng-repeat="data in studentDataContainer track by $index">
+          <div class="col">{{data.rollNo}}</div>
+          <div class="col">{{data.studentName}}</div>
+          <div class="col">{{data.standard}}</div>
+        </div>          
+  </ion-content>
+</ion-view>
