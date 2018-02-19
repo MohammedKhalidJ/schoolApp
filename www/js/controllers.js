@@ -122,27 +122,30 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
   
   // Perform the login action when the user submits the login form
   $scope.addStudentDetail = function() {
-    
-    $scope.studentDataContainer = [];
-    if (localStorage.getItem("studentData") === null) {
-      $scope.studentDataContainer.push($scope.studentData);    
-      localStorage.setItem("studentData", JSON.stringify($scope.studentDataContainer));
+    if($scope.studentData.studentName == "" || $scope.studentData.studentName == null, $scope.studentData.rollNo == "" || $scope.studentData.rollNo == null, $scope.studentData.standard == "" || $scope.studentData.standard == null, $scope.studentData.parentNo == "" || $scope.studentData.parentNo == null) {
+        alert("Please enter the Mandatory Fields");
     } else {
-      var previousData = JSON.parse(localStorage.getItem("studentData"));
-        
-      for(var cnt=0; cnt<previousData.length; cnt++){
-        $scope.studentDataContainer.push(previousData[cnt]);    
-      }
-        
-      $scope.studentDataContainer.push($scope.studentData);
-      localStorage.setItem("studentData", JSON.stringify($scope.studentDataContainer));
+        $scope.studentDataContainer = [];
+        if (localStorage.getItem("studentData") === null) {
+          $scope.studentDataContainer.push($scope.studentData);    
+          localStorage.setItem("studentData", JSON.stringify($scope.studentDataContainer));
+        } else {
+          var previousData = JSON.parse(localStorage.getItem("studentData"));
+
+          for(var cnt=0; cnt<previousData.length; cnt++){
+            $scope.studentDataContainer.push(previousData[cnt]);    
+          }
+
+          $scope.studentDataContainer.push($scope.studentData);
+          localStorage.setItem("studentData", JSON.stringify($scope.studentDataContainer));
+        }
+        // Simulate a login delay. Remove this and replace with your login
+        // code if using a login system
+        $timeout(function() {
+          $scope.resetForm();
+          $scope.closeStudentWindow();
+        }, 1000);
     }
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.resetForm();
-      $scope.closeStudentWindow();
-    }, 1000);
   };
   
   $scope.deleteStudentDetail = function() {
