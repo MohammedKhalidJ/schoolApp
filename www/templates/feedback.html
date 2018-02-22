@@ -1,0 +1,30 @@
+<ion-view view-title="Feedback">
+  <ion-content>
+    <div class="row">
+        <div class="col" style="border: none">
+        
+            <div class="item item-divider">
+              Feedback
+            </div>
+            <div class="item item-text-wrap">
+              <form>
+              <div class="list">                
+                <div class="input-field">
+                  <label for="email">Email</label>
+              <input type="email" id="email" class="validate" ng-model="ctrl.formdata.email">              
+            </div>
+              <rating ng-model="ratingFull.rate" max="ratingFull.max"></rating>
+            </div>
+                
+              <div class="input-field">
+                              <label for="textarea">Your message here...</label>
+              <textarea id="textarea" class="materialize-textarea" ng-model="ctrl.formdata.text"></textarea>
+            </div>
+            <input type="submit" id="submit" value="Submit"
+                   class="button button-block teal lighten-2 white-text">
+              </form>
+            </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

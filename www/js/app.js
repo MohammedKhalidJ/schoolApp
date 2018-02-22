@@ -33,6 +33,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
     
   .state('app.dashboard', {
+    cache: false,
     url: '/dashboard',
     views: {
       'menuContent': {
@@ -43,6 +44,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('app.studentdetails', {
+    cache: false,
     url: '/studentdetails',
     views: {
       'menuContent': {
@@ -69,8 +71,18 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+    
+  .state('app.feedback', {
+    url: '/feedback',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/feedback.html'
+      }
+    }
+  })
 
   .state('app.single', {
+    cache: false,
     url: '/playlists/:playlistId',
     views: {
       'menuContent': {
