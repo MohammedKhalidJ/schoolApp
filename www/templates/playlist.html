@@ -12,7 +12,7 @@
         </label>
         <label class="item item-input">
           <span class="input-label">Message</span>
-          <textarea rows="4" cols="50" placeholder="Enter Your Message Here" id="MessagetoSend"></textarea>
+          <textarea rows="4" cols="50" placeholder="Enter Your Message Here" ng-model="$parent.MessagetoSend"></textarea>
         </label>
       </div>
       <button class="button button-block button-positive" ng-click=sendMessage();>Send</button>

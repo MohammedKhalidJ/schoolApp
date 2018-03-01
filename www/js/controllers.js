@@ -68,9 +68,8 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
       };
 
       $scope.sendSMS = function() {
-        var message = document.getElementById("MessagetoSend").value;
         $cordovaSms
-          .send($scope.PhoneNumber, $scope.message, options)
+          .send($scope.PhoneNumber, $scope.MessagetoSend, options)
           .then(function() {
             alert('Success');
             // Success! SMS was sent
