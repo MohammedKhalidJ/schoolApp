@@ -76,7 +76,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/feedback',
     views: {
       'menuContent': {
-        templateUrl: 'templates/feedback.html'
+        templateUrl: 'templates/feedback.html',
+        controller: 'FeedbackCtrl'  
       }
     }
   })
