@@ -7,7 +7,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 
 .controller('LoginCtrl', function($scope, $state) {
   $scope.doLogin = function() {
-    if($scope.UserName == "khalid" && $scope.Password == "12345"){
+    if($scope.UserName == "TACW" && $scope.Password == "12345"){
       $state.go('app.dashboard');
     } else {
       alert("Enter the required value");
