@@ -5,11 +5,15 @@
           <div class="col">Roll Number</div>
           <div class="col">Student Name</div>
           <div class="col">Department</div>
+          <div class="col"></div>
+          <div class="col"></div>
         </div>
         <div class="row" ng-repeat="data in studentDataContainer track by $index">
           <div class="col">{{data.rollNo}}</div>
           <div class="col">{{data.studentName}}</div>
           <div class="col">{{data.standard}}</div>
+            <div class="col"><button class="ion-edit button-block button-positive" ng-click="setStudentDetail($index);"></button></div>
+            <div class="col"><button class="ion-close-circled button-block button-positive" ng-click="deleteStudentDetail($index);"></button></div>
         </div>          
   </ion-content>
 </ion-view>

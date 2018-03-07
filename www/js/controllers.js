@@ -60,26 +60,48 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
   
   $scope.studentData = {};
   $scope.studentDataContainer = [];
+  $scope.editIndex = 0;
     
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/addstudents.html', {
     scope: $scope
   }).then(function(modal) {
-    $scope.modal = modal;
+    $scope.addmodal = modal;
+  });
+    
+  $ionicModal.fromTemplateUrl('templates/editstudents.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.editmodal = modal;
   });
     
   // Triggered in the login modal to close it
   $scope.closeStudentWindow = function() {
-    $scope.modal.hide();
+    $scope.addmodal.hide();
   };
 
   // Open the login modal
   $scope.openStudentWindow = function() {
-    $scope.modal.show();
+    $scope.addmodal.show();
+    $scope.resetaddForm();      
+  };
+    
+  // Triggered in the login modal to close it
+  $scope.closeEditStudentWindow = function() {
+    $scope.editmodal.hide();
+  };
+
+  // Open the login modal
+  $scope.openEditStudentWindow = function() {
+    $scope.editmodal.show();
   };
   
-  $scope.resetForm = function() {
-    document.myForm.reset();
+  $scope.resetaddForm = function() {
+    document.myaddForm.reset();
+  }
+  
+  $scope.reseteditForm = function() {
+    document.myeditForm.reset();
   }
   
   $scope.checkData = function() {
@@ -115,23 +137,50 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
         // Simulate a login delay. Remove this and replace with your login
         // code if using a login system
         $timeout(function() {
-          $scope.resetForm();
           $scope.closeStudentWindow();
+          $scope.resetaddForm();
         }, 1000);
     }
   };
   
-  $scope.deleteStudentDetail = function() {
-    
+  $scope.deleteStudentDetail = function(index) {
+    var getData = JSON.parse(localStorage.getItem("studentData"));
+    getData.splice(index,1);
+    $scope.studentDataContainer= getData;  
+    localStorage.setItem("studentData", JSON.stringify($scope.studentDataContainer));
+  }
+  
+  $scope.setStudentDetail = function(index) {
+    $scope.editIndex = index;
+    $scope.openEditStudentWindow();
+    var getData = JSON.parse(localStorage.getItem("studentData"));
+    $scope.studentData.studentName = getData[index].studentName;
+    $scope.studentData.rollNo = getData[index].rollNo;
+    $scope.studentData.standard = getData[index].standard;
+    $scope.studentData.section = getData[index].section;
+    $scope.studentData.bloodGroup = getData[index].bloodGroup;
+    $scope.studentData.parentName = getData[index].parentName;
+    $scope.studentData.parentNo = getData[index].parentNo;
   }
   
   $scope.editStudentDetail = function() {
-    
+    if($scope.studentData.studentName == "" || $scope.studentData.studentName == null, $scope.studentData.rollNo == "" || $scope.studentData.rollNo == null, $scope.studentData.standard == "" || $scope.studentData.standard == null, $scope.studentData.parentNo == "" || $scope.studentData.parentNo == null) {
+        alert("Please enter the Mandatory Fields");
+    } else {
+      var getData = JSON.parse(localStorage.getItem("studentData"));
+      getData.splice($scope.editIndex,1,$scope.studentData);
+      $scope.studentDataContainer= getData;  
+      localStorage.setItem("studentData", JSON.stringify($scope.studentDataContainer));
+        
+      $timeout(function() {
+          $scope.reseteditForm();
+          $scope.closeEditStudentWindow();
+          $scope.studentData = {};
+        }, 1000);
+    }
   }
   
   $scope.checkData();
-
-
 })
 
 .controller('DashboardCtrl', function($scope, $stateParams) {
@@ -152,7 +201,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 })
     
 .controller('FeedbackCtrl', function($scope, $stateParams, $cordovaSms) { 
-   $scope.adminNumber = "8122855180";
+   $scope.adminNumber = "8248604861";
     
    $scope.invokemsgFunc = function() {
      $scope.sendSMS();    
